@@ -3,7 +3,6 @@ const app = express();
 const morgan = require("morgan");
 const cors = require("cors");
 const path = require("path");
-const bodyParser = require('body-parser');
 const connectDB = require("./config/db");
 const errorHandle = require("./middlewares/error");
 
@@ -12,7 +11,6 @@ require("dotenv").config();
 // Middleware-lar
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(bodyParser.json());
 app.use(cors());
 
 // "public/image" file static 
@@ -29,6 +27,7 @@ connectDB();
 app.use("/api/v1/auth", require("./routes/user.route"));
 app.use("/api/v1/products", require("./routes/product.route"));
 app.use("/api/v1/cart", require("./routes/cart.route"));
+app.use("/api/v1/swagger", require("./routes/swagger.route"));
 
 // Error handler
 app.use(errorHandle);
