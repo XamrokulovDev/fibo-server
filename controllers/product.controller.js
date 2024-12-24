@@ -39,7 +39,7 @@ exports.createProduct = asyncHandle(async (req, res, next) => {
     if (!req.file) {
         return next(new ErrorResponse('Image file is required!', 400));
     }
-    const imagePath = `/uploads/${req.file.filename}`;
+    const imagePath = `http://localhost:7000/uploads/${req.file.filename}`;
 
     const product = await Product.create({ title, description, price, image: imagePath });
     res.status(201).json({
@@ -60,7 +60,7 @@ exports.updateProduct = asyncHandle(async (req, res, next) => {
     if (!req.file) {
         return next(new ErrorResponse('Image file is required!', 400));
     }
-    const imagePath = `/uploads/${req.file.filename}`;
+    const imagePath = `http://localhost:7000/uploads/${req.file.filename}`;
 
     const product = await Product.findByIdAndUpdate(id, { title, description, price, image: imagePath }, { new: true });
     if(!product) {
